@@ -14,13 +14,13 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 WORKDIR /var/www/html
 
 # Copy project files
-COPY ./composer.json /var/www/html/
+#COPY composer.json /var/www/html/
 
 # Install project dependencies
 RUN composer install --no-interaction --optimize-autoloader #--no-suggest
 
 # Set permissions
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+#RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Expose port 9000
 EXPOSE 9000
