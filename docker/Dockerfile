@@ -14,10 +14,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 WORKDIR /var/www/html
 
 # Copy project files
-#COPY . .
+COPY ./composer.json /var/www/html/
 
 # Install project dependencies
-RUN composer install --no-interaction --optimize-autoloader --no-suggest
+RUN composer install --no-interaction --optimize-autoloader #--no-suggest
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
@@ -26,5 +26,5 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 EXPOSE 9000
 
 # Start the server
-CMD php artisan serve --host=0.0.0.0 --port=9000
+#CMD php artisan serve --host=0.0.0.0 --port=9000
 
