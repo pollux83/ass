@@ -1,40 +1,19 @@
-# Ignore vendor directory
+/.phpunit.cache
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
 /vendor
-
-# Ignore .env file
 .env
-
-# Ignore user-specific files
-/.idea
-/.vscode
-/.phpstorm.meta.php
-
-# Ignore log and cache files
-/storage/*.log
-/bootstrap/cache/*
-
-# Ignore local development files
-/.vagrant
+.env.backup
+.env.production
+.phpunit.result.cache
 Homestead.json
 Homestead.yaml
-
-# Ignore composer lock file
-composer.lock
-
-# Ignore node_modules directory
-/node_modules
-
-# Ignore compiled assets
-/public/js/app.js
-/public/css/app.css
-
-# Ignore server configuration files
-/nginx
-/apache2
-
-# Ignore SQLite database file
-/database/*.sqlite
-
-# Ignore editor files
-*.swp
-.DS_Store
+auth.json
+npm-debug.log
+yarn-error.log
+/.fleet
+/.idea
+/.vscode

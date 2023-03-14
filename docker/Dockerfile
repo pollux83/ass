@@ -17,7 +17,9 @@ WORKDIR /var/www/html
 #COPY composer.json /var/www/html/
 
 # Install project dependencies
-RUN composer install --no-interaction --optimize-autoloader #--no-suggest
+#RUN composer install --no-interaction --optimize-autoloader #--no-suggest
+
+#RUN composer create-project laravel/laravel --prefer-dist application
 
 # Set permissions
 #RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
@@ -26,5 +28,5 @@ RUN composer install --no-interaction --optimize-autoloader #--no-suggest
 EXPOSE 9000
 
 # Start the server
-#CMD php artisan serve --host=0.0.0.0 --port=9000
+CMD php artisan serve --host=0.0.0.0 --port=9000
 
