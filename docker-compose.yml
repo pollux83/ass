@@ -17,15 +17,15 @@ services:
     volumes:
       - .:/var/www/html
 
-#  db:
-#    image: postgres
-#    environment:
-#      POSTGRES_DB: your_database_name
-#      POSTGRES_USER: your_database_user
-#      POSTGRES_PASSWORD: your_database_password
-#    networks:
-#      - db_network
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: your_database_name
+      POSTGRES_USER: your_database_user
+      POSTGRES_PASSWORD: your_database_password
+    networks:
+      - db_network
 
 networks:
   app_network:
-#  db_network:
+  db_network:
