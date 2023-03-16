@@ -5,13 +5,13 @@ services:
     build: ./docker
     ports:
       - "9000:9000"
-#    environment:
-#      DB_CONNECTION: pgsql
-#      DB_HOST: db
-#      DB_PORT: 5432
-#      DB_DATABASE: your_database_name
-#      DB_USERNAME: your_database_user
-#      DB_PASSWORD: your_database_password
+    environment:
+      DB_CONNECTION: pgsql
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: ass
+      DB_USERNAME: root
+      DB_PASSWORD: root
     networks:
       - app_network
     volumes:
@@ -20,9 +20,9 @@ services:
   db:
     image: postgres
     environment:
-      POSTGRES_DB: your_database_name
-      POSTGRES_USER: your_database_user
-      POSTGRES_PASSWORD: your_database_password
+      POSTGRES_DB: ass
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
     networks:
       - db_network
 
