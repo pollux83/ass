@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   app:
-    build: ./docker
+    build: .
     ports:
       - "9000:9000"
     environment:
@@ -12,6 +12,7 @@ services:
       DB_DATABASE: ass
       DB_USERNAME: root
       DB_PASSWORD: root
+      APP_URL: 'http://localhost:9000'
     networks:
       - app_network
     volumes:
@@ -23,8 +24,13 @@ services:
       POSTGRES_DB: ass
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
     networks:
       - db_network
+
+volumes:
+    postgres-data:
 
 networks:
   app_network:

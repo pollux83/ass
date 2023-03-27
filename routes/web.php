@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -8,44 +11,32 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
 |
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
 
-Route::get('/assistant', function () {
-    // Display a form for submitting a message to the assistant
-    return view('assistant');
+Route::get('/app', function () {
+    return Inertia::render('app');
 });
-Route::post('/chat', 'ChatGPTController@sendMessage');
 
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-//Route::post('/assistant', function () {
-//    // Process the submitted message and send it to ChatGPT
-//    $message = request()->input('message');
-//    $response = '';// Send $message to ChatGPT and get a response
-//    return view('assistant', [
-//        'message' => $message,
-//        'response' => $response,
-//    ]);
-//});
-
-//Route::post('/assistant', function (Request $request) {
-//    $messages = $request->session()->get('messages', [
-//        ['role' => 'system', 'content' => 'You are LaravelGPT - A ChatGPT clone. Answer as concisely as possible.']
-//    ]);
-//
-//    $response = OpenAI::chat()->create([
-//        'model' => 'gpt-3.5-turbo',
-//        'messages' => $messages
-//    ]);
-//    return view('assistant', [
-//        'message' => $message,
-//        'response' => $response,
-//    ]);
-//});
+require __DIR__.'/auth.php';
