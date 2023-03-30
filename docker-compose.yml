@@ -3,11 +3,13 @@ version: '3.4'
 services:
   app:
     build: .
+    hostname: "ass_app"
+    container_name: "ass_app"
     ports:
       - "9000:9000"
     environment:
       DB_CONNECTION: pgsql
-      DB_HOST: 127.0.0.1
+      DB_HOST: ass_db
       DB_PORT: 5432
       DB_DATABASE: ass
       DB_USERNAME: root
@@ -21,12 +23,15 @@ services:
 
   db:
     image: postgres
+    hostname: "ass_db"
+    container_name: "ass_db"
     ports:
-        - "54342:5432"
+        - "5432:5432"
     environment:
-      POSTGRES_DB: ass
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
+      - POSTGRES_DB=ass
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - PGDATA=/var/lib/postgresql/data/ass/
     volumes:
       - postgres-data:/var/lib/postgresql/data
     networks:
