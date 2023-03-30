@@ -6,7 +6,7 @@ services:
     hostname: "ass_app"
     container_name: "ass_app"
     ports:
-      - "9000:9000"
+      - "8888:8888"
     environment:
       DB_CONNECTION: pgsql
       DB_HOST: ass_db
@@ -14,7 +14,7 @@ services:
       DB_DATABASE: ass
       DB_USERNAME: root
       DB_PASSWORD: root
-      APP_URL: 'http://localhost:9000'
+      APP_URL: 'http://localhost:8888'
     networks:
       - app_network
 #      - internal
