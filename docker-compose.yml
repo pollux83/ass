@@ -1,53 +1,47 @@
 version: '3.4'
 
 services:
-  ass:
-    build: .
-    hostname: "ass"
-    container_name: "ass"
-    ports:
-      - "8889:8889"
-    environment:
-      DB_CONNECTION: pgsql
-      DB_HOST: ass_db
-      DB_PORT: 5432
-      DB_DATABASE: ass
-      DB_USERNAME: root
-      DB_PASSWORD: root
-      APP_URL: 'http://localhost:8889'
-    networks:
-      - ass_network
-#      - internal
-    volumes:
-      - .:/var/www/html
+    ass:
+        build: .
+        hostname: "ass"
+        container_name: "ass"
+        ports:
+            - "8889:8889"
+            - "5174:5174"
+        environment:
+            DB_CONNECTION: pgsql
+            DB_HOST: ass_db
+            DB_PORT: 5432
+            DB_DATABASE: ass
+            DB_USERNAME: root
+            DB_PASSWORD: root
+            APP_URL: 'http://localhost:8889'
+        networks:
+            - ass_network
+        #      - internal
+        volumes:
+            - .:/var/www/html
 
-  db:
-    image: postgres
-    hostname: "ass_db"
-    container_name: "ass_db"
-    ports:
-        - "5432:54342"
-    environment:
-      - POSTGRES_DB=ass
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=root
-      - PGDATA=/var/lib/postgresql/data/ass/
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    networks:
-#      - db_network
-      - ass_network
-#      - internal
+    db:
+        image: postgres
+        hostname: "ass_db"
+        container_name: "ass_db"
+        ports:
+            - "5432:54342"
+        environment:
+            - POSTGRES_DB=ass
+            - POSTGRES_USER=root
+            - POSTGRES_PASSWORD=root
+            - PGDATA=/var/lib/postgresql/data/ass/
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+        networks:
+            #      - db_network
+            - ass_network
+    #      - internal
 
 volumes:
     postgres-data:
 
 networks:
-  ass_network:
-#  db_network:
-#  internal:
-#      driver: bridge
-#      ipam:
-#          driver: default
-#          config:
-#              - subnet: 192.168.220.0/28
+    ass_network:
