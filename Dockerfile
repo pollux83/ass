@@ -26,9 +26,8 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
 #RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Expose port 9000
-EXPOSE 9000
+EXPOSE 8888
 
 # Start the server
-#CMD php artisan serve --host=1.1.1.1 --port=9000
-CMD php artisan serve --port=9000
+#CMD php artisan serve --host=0.0.0.0 --port=8888
 

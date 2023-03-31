@@ -1,12 +1,12 @@
 version: '3.4'
 
 services:
-  app:
+  ass:
     build: .
-    hostname: "ass_app"
-    container_name: "ass_app"
+    hostname: "ass"
+    container_name: "ass"
     ports:
-      - "9000:9000"
+      - "8888:8888"
     environment:
       DB_CONNECTION: pgsql
       DB_HOST: ass_db
@@ -16,7 +16,7 @@ services:
       DB_PASSWORD: root
       APP_URL: 'http://localhost:9000'
     networks:
-      - app_network
+      - ass_network
 #      - internal
     volumes:
       - .:/var/www/html
@@ -36,14 +36,14 @@ services:
       - postgres-data:/var/lib/postgresql/data
     networks:
 #      - db_network
-      - app_network
+      - ass_network
 #      - internal
 
 volumes:
     postgres-data:
 
 networks:
-  app_network:
+  ass_network:
 #  db_network:
 #  internal:
 #      driver: bridge
