@@ -25,7 +25,7 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
 # Set permissions
 #RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Expose port 9000
+# Expose port 8888
 EXPOSE 8888
 
 # Start the server

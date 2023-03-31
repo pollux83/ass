@@ -14,7 +14,7 @@ services:
       DB_DATABASE: ass
       DB_USERNAME: root
       DB_PASSWORD: root
-      APP_URL: 'http://localhost:9000'
+      APP_URL: 'http://localhost:8888'
     networks:
       - ass_network
 #      - internal
