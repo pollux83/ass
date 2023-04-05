@@ -6,14 +6,14 @@ export default defineConfig({
     server: {
         hmr: {
             host: '0.0.0.0',
-            port: 5173,
+            // port: 5174,
         },
     },
-    plugins: [
-        laravel({
-            input: 'resources/js/app.jsx',
-            refresh: true,
-        }),
-        react(),
-    ],
+    // plugins: [
+    //     laravel({
+    //         input: 'resources/js/app.jsx',
+    //         refresh: true,
+    //     }),
+    //     react(),
+    // ],
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 use OpenAI\Client;
 
 class ChatGPTController extends Controller
@@ -22,5 +23,9 @@ class ChatGPTController extends Controller
             'message' => $message,
             'response' => $response->choices[0]->text,
         ]);
+    }
+
+    public function create(){
+        return Inertia::render('ChatGPT/Create');
     }
 }
