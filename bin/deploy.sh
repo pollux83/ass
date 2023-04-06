@@ -16,3 +16,8 @@ docker-compose up -d
 yarn add vite @vitejs/plugin-react
 
 
+
+ php artisan db:seed --class=RemoveUsersSeeder
+
+
+
