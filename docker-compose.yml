@@ -17,12 +17,21 @@ services:
             DB_PASSWORD: root
             APP_URL: '0.0.0.0:8889'
             DUSK_DRIVER: chrome
+#            DUSK_DRIVER: remote
+#            DUSK_REMOTE_URL: "http://selenium:4444/wd/hub"
         networks:
             - ass_network
         #      - internal
         volumes:
             - .:/var/www/html
         command: sh -c "php artisan serve --host=0.0.0.0 --port=8889 & npm run dev"
+
+    selenium:
+        image: selenium/standalone-chrome
+        hostname: "ass_selenium"
+        container_name: "ass_selenium"
+        ports:
+            - "4444:4444"
 
 
     db:
