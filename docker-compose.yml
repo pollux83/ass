@@ -16,6 +16,7 @@ services:
             DB_USERNAME: root
             DB_PASSWORD: root
             APP_URL: '0.0.0.0:8889'
+            DUSK_DRIVER: chrome
         networks:
             - ass_network
         #      - internal

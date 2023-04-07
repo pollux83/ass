@@ -2,10 +2,20 @@ FROM php:8.1-fpm
 
 # Install system dependencies
 RUN apt-get update && \
-    apt-get install -y git curl zlib1g-dev libpng-dev libpq-dev libxml2-dev libzip-dev
+    apt-get install -y curl git  zlib1g-dev libpng-dev libpq-dev libxml2-dev libzip-dev gnupg
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_pgsql gd xml zip
+
+
+#Install Google Chrome
+#RUN apt-get -y install libxpm4 libxrender1 libgtk2.0-0 libnss3 libgconf-2-4 gnupg
+#RUN apt-get -y install zip unzip
+
+RUN curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
+RUN echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
+RUN apt-get -y update
+RUN apt-get -y install google-chrome-stable
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
