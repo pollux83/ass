@@ -19,5 +19,7 @@ yarn add vite @vitejs/plugin-react
 
  php artisan db:seed --class=RemoveUsersSeeder
 
+ php artisan dusk:install
+
 
 
