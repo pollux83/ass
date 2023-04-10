@@ -82,7 +82,7 @@ abstract class DuskTestCase extends BaseTestCase
      */
     public static function prepare()
     {
-        static::startChromeDriver();
+//        static::startChromeDriver();
     }
 
     /**
@@ -103,7 +103,7 @@ abstract class DuskTestCase extends BaseTestCase
         $capabilities->setCapability(ChromeOptions::CAPABILITY, $options);
 
         return RemoteWebDriver::create(
-            'http://selenium:4444/wd/hub',
+            'http://localhost:4444/wd/hub',
             $capabilities
         );
     }
