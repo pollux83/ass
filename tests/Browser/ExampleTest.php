@@ -17,5 +17,16 @@ class ExampleTest extends DuskTestCase
             $browser->visit('/')
                     ->assertSee('Laravel');
         });
+//        $user = User::factory()->create([
+//            'email' => 'taylor@laravel.com',
+//        ]);
+//
+//        $this->browse(function ($browser) use ($user) {
+//            $browser->visit('/login')
+//                ->type('email', $user->email)
+//                ->type('password', 'password')
+//                ->press('Login')
+//                ->assertPathIs('/home');
+//        });
     }
 }

@@ -18,14 +18,14 @@ services:
             APP_URL: '0.0.0.0:8889'
             DUSK_DRIVER: chrome
 #            DUSK_DRIVER: remote
-#            DUSK_REMOTE_URL: "http://selenium:4444/wd/hub"
+#            DUSK_REMOTE_URL: "http://0.0.0.0:4444/wd/hub"
         networks:
-            - ass_network
-        #      - internal
+            - network
         volumes:
             - .:/var/www/html
-#        links:
-#            - selenium
+        depends_on:
+            - db
+            - selenium
         command: sh -c "php artisan serve --host=0.0.0.0 --port=8889 & npm run dev"
 
     selenium:
@@ -34,10 +34,55 @@ services:
         container_name: "selenium"
         ports:
             - "4444:4444"
-        depends_on:
-            - ass
-        links:
-            - ass:selenium
+#        links:
+#            - ass:selenium
+        networks:
+            network:
+                aliases:
+                  - selenium
+
+#    chrome:
+#        image: selenium/node-chrome:4.8.3-20230404
+#        shm_size: 2gb
+#        depends_on:
+#            - selenium-hub
+#        environment:
+#            - SE_EVENT_BUS_HOST=selenium-hub
+#            - SE_EVENT_BUS_PUBLISH_PORT=4442
+#            - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+#        ports:
+#            - "6900:5900"
+#
+#    edge:
+#        image: selenium/node-edge:4.8.3-20230404
+#        shm_size: 2gb
+#        depends_on:
+#            - selenium-hub
+#        environment:
+#            - SE_EVENT_BUS_HOST=selenium-hub
+#            - SE_EVENT_BUS_PUBLISH_PORT=4442
+#            - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+#        ports:
+#            - "6901:5900"
+#
+#    firefox:
+#        image: selenium/node-firefox:4.8.3-20230404
+#        shm_size: 2gb
+#        depends_on:
+#            - selenium-hub
+#        environment:
+#            - SE_EVENT_BUS_HOST=selenium-hub
+#            - SE_EVENT_BUS_PUBLISH_PORT=4442
+#            - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+#        ports:
+#            - "6902:5900"
+#
+#    selenium-hub:
+#        image: selenium/hub:4.8.3-20230404
+#        ports:
+#            - "4442:4442"
+#            - "4443:4443"
+#            - "4444:4444"
 
     db:
         image: postgres
@@ -53,12 +98,12 @@ services:
         volumes:
             - postgres-data:/var/lib/postgresql/data
         networks:
-            #      - db_network
-            - ass_network
-    #      - internal
+            - network
 
 volumes:
     postgres-data:
 
 networks:
-    ass_network:
+    network:
+
+
