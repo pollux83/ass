@@ -7,14 +7,6 @@ RUN apt-get update && \
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_pgsql gd xml zip
 
-
-# Install Google Chrome
-RUN curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
-RUN echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
-RUN apt-get -y update
-RUN apt-get -y install google-chrome-stable
-
-
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 # Set the working directory
@@ -38,4 +30,7 @@ EXPOSE 8889
 
 # Start the server
 #CMD php artisan serve --host=0.0.0.0 --port=8889
+
+# Install @inertiajs/inertia and @inertiajs/inertia-react
+RUN npm install @inertiajs/inertia @inertiajs/inertia-react
 
