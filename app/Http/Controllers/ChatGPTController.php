@@ -8,6 +8,16 @@ use OpenAI\Client;
 
 class ChatGPTController extends Controller
 {
+    /**
+     * @var Client
+     */
+    protected Client $client;
+
+    public function __construct(Client $client)
+    {
+        $this->client = $client;
+    }
+
     public function sendMessage(Request $request, Client $client)
     {
         $message = $request->input('message');
@@ -26,6 +36,18 @@ class ChatGPTController extends Controller
     }
 
     public function create(){
-        return Inertia::render('ChatGPT/Create');
+        $response = $this->client->models()->list();
+
+//        $response->object; // 'list'
+//
+//        foreach ($response->data as $result) {
+//            $result->id; // 'text-davinci-003'
+//            $result->object; // 'model'
+//            // ...
+//        }
+        $list = $response->toArray();
+        return Inertia::render('ChatGPT/Create', [
+            'list' => $list// ['object' => 'list', 'data' => [...]]
+        ]);
     }
 }
