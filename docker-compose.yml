@@ -27,7 +27,8 @@ services:
         depends_on:
             - db
             - selenium
-        command: sh -c "php artisan serve --host=0.0.0.0 --port=8889 & npm run dev"
+#        command: sh -c "php artisan serve --host=0.0.0.0 --port=8889 & npm run dev"
+        command: sh -c "php artisan serve --host=0.0.0.0 --port=8889"
 
     selenium:
         image: selenium/standalone-chrome:4.3.0-20220706
