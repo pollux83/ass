@@ -32,5 +32,5 @@ EXPOSE 8889
 #CMD php artisan serve --host=0.0.0.0 --port=8889
 
 # Install @inertiajs/inertia and @inertiajs/inertia-react
-RUN #npm install @inertiajs/inertia @inertiajs/inertia-react
+#RUN npm install @inertiajs/inertia @inertiajs/inertia-react
 
