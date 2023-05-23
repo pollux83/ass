@@ -27,6 +27,7 @@ services:
         depends_on:
             - db
             - selenium
+            - creation-agent
         command: sh -c "php artisan serve --host=0.0.0.0 --port=8889 & npm run dev"
 
     selenium:
@@ -53,6 +54,17 @@ services:
             - PGDATA=/var/lib/postgresql/data/ass/
         volumes:
             - postgres-data:/var/lib/postgresql/data
+        networks:
+            - network
+
+    creation-agent:
+        build:
+            context: ./docker/creation-agent
+        image: creation-agent
+        hostname: "ass_creation-agent"
+        container_name: "ass_creation-agent"
+        ports:
+            - "5000:5000"
         networks:
             - network
 
