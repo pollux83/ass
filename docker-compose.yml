@@ -67,8 +67,8 @@ services:
             - "5000:5000"
         networks:
             - network
-        volumes:
-            - ./docker/creation-agent/app.py:/app/app.py
+#        volumes:
+#            - ./docker/creation-agent/app.py:/app/app.py
 
 volumes:
     postgres-data:

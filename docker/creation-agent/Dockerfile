@@ -13,7 +13,12 @@ RUN /usr/local/bin/python -m pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the Python code to the container
-#COPY ../creation_agent.py .
+COPY ./app.py .
+#COPY ./app.py .
+
+# Expose the port on which the Flask application runs
+EXPOSE 5000
 
 # Set the command to run your Python script
 CMD [ "python", "app.py" ]
+
