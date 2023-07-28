@@ -1,7 +1,7 @@
 # import spacy
 
 from flask import Flask, request
-
+# pip install langchain
 import langchain
 import os
 # os.environ["OPENAI_API_KEY"] = ... # insert your API_TOKEN here
