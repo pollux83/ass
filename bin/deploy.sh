@@ -14,3 +14,8 @@ yarn add vite @vitejs/plugin-react
 
 
 
+pip install langchain
+
+
+
+
