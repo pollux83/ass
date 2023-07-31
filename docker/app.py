@@ -1,17 +1,18 @@
 # import spacy
 
-from flask import Flask, request
+# from flask import Flask, request
 # pip install langchain
+import streamlit as st
 import langchain
-import os
+# import os
 # os.environ["OPENAI_API_KEY"] = ... # insert your API_TOKEN here
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = ... # insert your API_TOKEN here
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = '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' # insert your API_TOKEN here
 
-app = Flask(__name__)
+# app = Flask(__name__)
 
-@app.route('/test', methods=['POST'])
-def test():
-    print("test")
+# @app.route('/test', methods=['POST'])
+# def test():
+#     print("test")
 
 def getLlm(prompt = "Alice has a parrot. What animal is Alice's pet?"):
     # Proprietary LLM from e.g. OpenAI
@@ -102,6 +103,14 @@ def getResult():
     result = qa({"query": query})
     print(result['result'])
 
+def app():
+    st.title("Simple LLM-powered App")
+    text_input = st.text_input("Enter your text here:")
+    if st.button("Generate"):
+        response = lc.generate(text_input)
+        st.write(response)
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
+#     app.run(debug=True)
+       app()

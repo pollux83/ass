@@ -19,3 +19,5 @@ yarn-error.log
 /.vscode
 
 phpunit.dusk.xml
+/docker/my_streamlit_app/
+/docker/myenv/
