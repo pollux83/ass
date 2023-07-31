@@ -12,7 +12,7 @@ RUN /usr/local/bin/python -m pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Download and install the Russian language model
-RUN python -m spacy download ru_core_news_sm
+#RUN python -m spacy download ru_core_news_sm
 
 # Copy the Python code to the container
 COPY ./app.py .

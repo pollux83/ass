@@ -6,9 +6,12 @@ if [ -d "myenv" ]; then
     deactivate
     rm -rf myenv
 fi
+if [ -d "my_streamlit_app" ]; then
+    rm -rf my_streamlit_app
+fi
 
 # Step 2: Uninstall Streamlit and langchain
-pip uninstall -y streamlit langchain
+pip uninstall -y streamlit #langchain
 
 # Step 3: (Optional) Stop the Streamlit app if it's running
 # If you deployed the app in the background with 'nohup', you can stop it like this:

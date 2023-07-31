@@ -24,10 +24,11 @@ if __name__ == "__main__":
 EOF
 
 # Step 4: Create a requirements.txt file
-echo "streamlit==1.8.0
-langchain==0.0.247" > requirements.txt
+echo "streamlit==1.8.0"> requirements.txt
+#langchain==0.0.247" > requirements.txt
 
 # Step 5: Install dependencies
+#pip install streamlit
 pip install -r requirements.txt
 
 # Step 6: Run the Streamlit app (in the background)
