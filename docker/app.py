@@ -44,9 +44,8 @@ def getEmbedding():
     embeddings = HuggingFaceEmbeddings(model_name = "sentence-transformers/all-MiniLM-L6-v2")
     return embeddings
 
-def embeddingText():
+def embeddingText(text = "Alice has a parrot. What animal is Alice's pet?"):
     # The embeddings model takes a text as an input and outputs a list of floats
-    text = "Alice has a parrot. What animal is Alice's pet?"
     embeddings = getEmbedding()
     text_embedding = embeddings.embed_query(text)
 
