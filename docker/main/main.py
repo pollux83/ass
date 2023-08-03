@@ -1,8 +1,15 @@
 import streamlit as st
 import os
 from langchain import PromptTemplate, HuggingFaceHub, LLMChain
-# pip install sentence_transformers
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain.vectorstores import FAISS
+from document_generator import generate_documents
+from splitter import getTextSplitter
+from db import createDB
+
+from llmHuggingFaceHub import getLLM
+from promptTemplate import getPromptTemplate
+# Set the HUGGINGFACEHUB_API_TOKEN environment variable
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
 
 def getLlm():
     # Alternatively, open-source LLM hosted on Hugging Face
@@ -18,24 +25,25 @@ def promptTemplate(input_variables=["question"]):
 
     return prompt
 
-# def getEmbedding():
-#     # Alternatively, open-source text embedding model hosted on Hugging Face
-#     embeddings = HuggingFaceEmbeddings(model_name = "sentence-transformers/all-MiniLM-L6-v2")
-#     return embeddings
+
+def generate(text_input='не знаю как прикрепить сотрудника'):
+    documents = generate_documents()
+#     st.write(documents[0])
+    texts = getTextSplitter(documents)
+    db = createDB(texts)
+#     st.write(db.similarity_search_with_score(text_input))
+    # цепочка с кастомным промтом
+    chain = LLMChain(
+    llm=getLlm(),
+    prompt=getPromptTemplate())
+    relevants = db.similarity_search(text_input)
+    doc = relevants[0].dict()['metadata']
+    return chain.run(doc)
 #
-# def embeddingText(text = "Alice has a parrot. What animal is Alice's pet?"):
-#     # The embeddings model takes a text as an input and outputs a list of floats
-#     embeddings = getEmbedding()
-#     return embeddings.embed_query(text)
-
-
-def generate(text_input):
-    prompt = promptTemplate()
-    return prompt.format(question=text_input)
+#     prompt = promptTemplate()
+#     return prompt.format(question=text_input)
 
 def main():
-    # Set the HUGGINGFACEHUB_API_TOKEN environment variable
-    os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
     st.title("Simple LLM-powered App")
     text_input = st.text_input("Enter your text here:")
     if st.button("Generate"):

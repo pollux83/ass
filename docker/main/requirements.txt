@@ -2,3 +2,5 @@ streamlit
 langchain
 huggingface_hub
 sentence_transformers
+pandas
+faiss-gpu

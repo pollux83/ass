@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
 #RUN git clone https://github.com/streamlit/streamlit-example.git .
 
 # Install the Python dependencies
+RUN pip install --upgrade pip
 RUN pip3 install -r requirements.txt
 
 # Copy the rest of the application code into the container's working directory
