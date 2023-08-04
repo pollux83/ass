@@ -4,3 +4,4 @@ huggingface_hub
 sentence_transformers
 pandas
 faiss-gpu
+git+https://github.com/huggingface/transformers.git
