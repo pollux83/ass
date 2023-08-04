@@ -17,13 +17,3 @@ def getPromptTemplate():
     )
 
     return PROMPT
-    llm = getLLM()
-    # цепочка с кастомным промтом
-    chain = LLMChain(
-    llm=llm,
-    prompt=PROMPT)
-
-    relevants = db.similarity_search('не знаю как прикрепить сотрудника')
-    doc = relevants[0].dict()['metadata']
-
-    chain.run(doc)
