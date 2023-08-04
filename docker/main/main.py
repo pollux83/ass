@@ -5,7 +5,7 @@ from langchain.vectorstores import FAISS
 from document_generator import generate_documents
 from splitter import getTextSplitter
 from db import createDB
-import alpaca_app as generateAlpaca
+from alpaca import generateAlpaca
 
 from llmHuggingFaceHub import getLLM
 from promptTemplate import getPromptTemplate
