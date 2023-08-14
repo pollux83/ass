@@ -6,3 +6,4 @@ pandas
 faiss-gpu
 git+https://github.com/huggingface/transformers.git
 accelerate
+bitsandbytes
