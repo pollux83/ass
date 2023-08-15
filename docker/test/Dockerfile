@@ -18,9 +18,8 @@ RUN apt-get update && apt-get install -y \
 
 # Install the Python dependencies
 RUN pip install --upgrade pip
-RUN pip3 install -r requirements.txt
-#https://medium.com/@murtuza753/using-llama-2-0-faiss-and-langchain-for-question-answering-on-your-own-data-682241488476
-#RUN pip install -qU transformers accelerate einops langchain xformers bitsandbytes faiss-gpu sentence_transformers
+#RUN pip3 install -r requirements.txt
+RUN pip install -qU transformers sentencepiece torch accelerate einops bitsandbytes streamlit
 
 # Copy the rest of the application code into the container's working directory
 COPY .. .
