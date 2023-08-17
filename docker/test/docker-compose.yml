@@ -7,6 +7,6 @@ services:
         container_name: "streamlit"
         ports:
             - "8501:8501"
-        entrypoint: ["streamlit", "run", "replit.py", "--server.port=8501", "--server.address=0.0.0.0"]
+        entrypoint: ["streamlit", "run", "santa.py", "--server.port=8501", "--server.address=0.0.0.0"]
         volumes:
             - .:/test

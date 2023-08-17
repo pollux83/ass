@@ -22,12 +22,11 @@ def generateCode(model):
 
 
 def app():
-    st.title("Test replit")
+    st.title("Test")
     if st.button("Run"):
         model = loadModel()
         st.write(generate(model))
 
 
 if __name__ == '__main__':
-#     app.run(debug=True)
        app()

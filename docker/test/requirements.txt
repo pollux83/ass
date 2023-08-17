@@ -8,11 +8,12 @@
 #accelerate
 #bitsandbytes
 
+#replit
 transformers
-sentencepiece
+#sentencepiece
 torch
-accelerate
-einops
-bitsandbytes
+#accelerate
+#einops
+#bitsandbytes
 streamlit
-scipy
+#scipy
